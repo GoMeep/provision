@@ -1,0 +1,23 @@
+{
+  "name": "meep-scrape",
+  "version": "1.0.0",
+  "description": "Provision new servers and report back when done.",
+  "main": "provision.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MeepGroup/meep-scrape"
+  },
+  "author": "wski <contact.mattdylan@gmail.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/MeepGroup/meep-scrape/issues"
+  },
+  "homepage": "https://github.com/MeepGroup/meep-scrape",
+  "dependencies": {
+    "meep-egg": "^1.0.0",
+    "request": "^2.67.0"
+  }
+}
