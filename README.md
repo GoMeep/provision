@@ -1,4 +1,4 @@
-# meep-scrape
+# meep-provision
 Provision new servers.
 
 ## Usage:
