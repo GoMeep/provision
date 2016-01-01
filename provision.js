@@ -13,6 +13,7 @@ const provision = function(options, callback) {
       'curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -',
       'apt-get install -y nodejs',
       'mkdir -p .meep',
+      `cd .meep && echo '{ "authKey": "${options.authKey}" }' > authkey.json`,
       'apt-get install -y git',
       'cd .meep && git clone https://github.com/MeepGroup/meep-hawk',
       'cd .meep/meep-hawk && npm i',
