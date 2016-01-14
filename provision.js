@@ -11,14 +11,20 @@ const provision = function(options, callback) {
       'dpkg --configure -a',
       'apt-get install -y curl',
       'curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -',
-      'apt-get install -y nodejs',
+      'apt-get install -y nodejs git',
       'mkdir -p .meep',
       `cd .meep && echo '{ "authKey": "${options.authKey}" }' > authkey.json`,
-      'apt-get install -y git',
+      `cd .meep && echo "{ meepDir: '~/.meep', master: false, hawk: { masterAddr: 'http://gomeep.com:3000/feed', roosterAddr: 'http://gomeep.com:3001/', authKey: 'IWyT3W6c8TV8MY8cp4JjQlkFc60IUcMo', myAddress: '${options.server.host}' } }" > meepConfig.js`,
       'cd .meep && git clone https://github.com/MeepGroup/meep-hawk',
+      'cd .meep && git clone https://github.com/MeepGroup/meep-cmdshim',
+      'cd .meep && git clone https://github.com/MeepGroup/meep-daemon',
       'cd .meep/meep-hawk && npm i',
+      'cd .meep/meep-cmdshim && npm i',
+      'cd .meep/meep-daemon && npm i',
       'npm i -g pm2',
-      'cd ~/.meep/meep-hawk && PM2_NODE_OPTIONS=\'-harmony-destructuring\' pm2 start reportingService.js'
+      'cd ~/.meep/meep-hawk &&  pm2 start reportingService.js --node-args="--harmony-destructuring"',
+      'cd ~/.meep/meep-cmdshim &&  pm2 start server.js --node-args="--harmony-destructuring"',
+      'cd ~/.meep/meep-daemon &&  pm2 start daemon.js --node-args="--harmony-destructuring"'
     ],
     test: true,
     output: function(err, msg){
