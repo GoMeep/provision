@@ -14,7 +14,7 @@ const provision = function(options, callback) {
       'apt-get install -y nodejs git',
       'mkdir -p .meep',
       `cd .meep && echo '{ "authKey": "${options.authKey}" }' > authkey.json`,
-      `cd .meep && echo "{ meepDir: '~/.meep', master: false, hawk: { masterAddr: 'http://gomeep.com:3000/feed', roosterAddr: 'http://gomeep.com:3001/', authKey: 'IWyT3W6c8TV8MY8cp4JjQlkFc60IUcMo', myAddress: '${options.server.host}' } }" > meepConfig.js`,
+      `cd .meep && echo "module.exports = { meepDir: '~/.meep', master: false, hawk: { masterAddr: 'http://gomeep.com:3000/feed', roosterAddr: 'http://gomeep.com:3001/', authKey: 'IWyT3W6c8TV8MY8cp4JjQlkFc60IUcMo', myAddress: '${options.server.host}' } }" > meepConfig.js`,
       'cd .meep && git clone https://github.com/MeepGroup/meep-hawk',
       'cd .meep && git clone https://github.com/MeepGroup/meep-cmdshim',
       'cd .meep && git clone https://github.com/MeepGroup/meep-daemon',
@@ -31,7 +31,8 @@ const provision = function(options, callback) {
       if(err) {
         console.log(msg);
       }
-    }
+    },
+    tickCallback: options.tickCallback
   });
 
   // Add the server to the trusted connections for rooster.

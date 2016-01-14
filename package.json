@@ -1,6 +1,6 @@
 {
   "name": "meep-provision",
-  "version": "1.0.1",
+  "version": "1.2.5",
   "description": "Provision new servers and report back when done.",
   "main": "provision.js",
   "scripts": {
