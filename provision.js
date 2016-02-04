@@ -15,10 +15,10 @@ const provision = function(options, callback) {
       'mkdir -p .meep',
       `cd .meep && echo '{ "authKey": "${options.authKey}" }' > authkey.json`,
       `cd .meep && echo "${options.meepConfig}" > meepConfig.js`,
-      'cd .meep && git clone https://github.com/MeepGroup/meep-daemon',
-      'cd .meep/meep-daemon && npm i',
+      'cd .meep && git clone https://github.com/MeepGroup/daemon',
+      'cd .meep/daemon && npm i',
       'npm i -g pm2',
-      'cd ~/.meep/meep-daemon &&  pm2 start daemon.js --node-args="--harmony-destructuring"'
+      'cd ~/.meep/daemon &&  pm2 start daemon.js --node-args="--harmony-destructuring"'
     ],
     test: true,
     output: function(err, msg){
