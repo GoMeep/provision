@@ -30,19 +30,10 @@ const provision = function(options, callback) {
   });
 
   // Add the server to the trusted connections for rooster.
-  request.get(`http://meeppanel.com:3001/trust/${options.server.host}`,
-  function optionalCallback(err, httpResponse, body) {
-    if(err) {
-      console.log(err);
-      callback({error: `Failed to trust address ${options.server.host}`});
-    }else {
-      console.log(`Successfully trusted ${options.server.host}, provisioning...`);
-      egg.hatch().expect('node -v').match(new RegExp(/v5\..*\..*/), (res) => {
-        if(typeof(res) !== 'null') {
-          console.log('Successfully provisioned server!');
-          callback({success: 'Successfully provisioned server!'});
-        }
-      });
+  egg.hatch().expect('node -v').match(new RegExp(/v5\..*\..*/), (res) => {
+    if(typeof(res) !== 'null') {
+      console.log('Successfully provisioned server!');
+      callback({success: 'Successfully provisioned server!'});
     }
   });
 
